@@ -1,24 +1,26 @@
-package com.sh.mqtt.test;
+package com.sh.mqtt.example;
 
 import com.sh.mqtt.annotation.MQTTRequestMapping;
 import com.sh.mqtt.annotation.MQTTResponseBody;
+import com.sh.mqtt.core.RequetMqttMessage;
 import com.sh.mqtt.stereotype.MQTTController;
 
 @MQTTController
-@MQTTRequestMapping("test")
+@MQTTRequestMapping("example")
 public class Test {
 
-    @MQTTRequestMapping("test")
+    @MQTTRequestMapping("example")
     @MQTTResponseBody("act/5568")
     public String test(String args){
         System.out.println(args + "test1 OK");
         return "cacac";
     }
 
-    @MQTTRequestMapping("ccc")
+    @MQTTRequestMapping("act/#")
     @MQTTResponseBody("act/88998")
-    public String ccc(){
-        System.out.println("ccc OK");
-        return "cacac";
+    public TestEntity ccc(TestEntity entity, RequetMqttMessage mqttMessage){
+        System.out.println(mqttMessage.getTopic() + " ---- " + entity.getName());
+        return entity;
     }
+
 }

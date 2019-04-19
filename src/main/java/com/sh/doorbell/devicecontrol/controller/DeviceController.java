@@ -6,6 +6,9 @@ import com.sh.base.result.ResultConstants;
 import com.sh.base.result.ResultData;
 import com.sh.doorbell.devicecontrol.service.DeviceControlService;
 import com.sh.doorbell.registerandactivate.entity.UserEntity;
+import com.sh.mqtt.annotation.MQTTRequestMapping;
+import com.sh.mqtt.annotation.MQTTResponseBody;
+import com.sh.mqtt.stereotype.MQTTController;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +24,10 @@ public class DeviceController {
     private ResultData resultData;
     @Autowired
     private DeviceControlService deviceControlService;
+
+    DeviceController(){
+        System.out.println("device create!");
+    }
 
     @RequestMapping("unlock")
     @ResponseBody
@@ -40,7 +47,5 @@ public class DeviceController {
         }
         return resultData;
     }
-
-
 
 }
